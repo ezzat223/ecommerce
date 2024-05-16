@@ -33,10 +33,16 @@ if (process.env.NODE_ENV === "development") {
 }
 
 /* =============== Mount Routes =============== */
+// just for debugging
+app.get("/", (req, res) => {
+  res.send("<h1>Hello eCommerce....!</h1>");
+})
 // category
 app.use("/api/v1/categories", categoryRoute);
 
-// Error Handling for routes => send to Global Error Handling Middleware For ** express ** errors
+
+
+// =============== Error Handling for routes => send to Global Error Handling Middleware For ** express ** errors
 app.all("*", (req, res, next) => {
   next(new ApiError(`Can't find this route: ${req.originalUrl}`, 400));
 });
@@ -46,7 +52,7 @@ app.use(globalError);
 
 /* ============== Listen ============== */
 const PORT = process.env.PORT || 4000;
-const server = app.listen(PORT, "localhost", () => {
+const server = app.listen(PORT, () => {
   console.log(`App running on PORT ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
 });
