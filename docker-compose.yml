@@ -12,6 +12,8 @@ services:
   mongo:
     image: mongo
     restart: always
+    volumes:
+      - mongo-db:/data/db      # the directory to store data on (from mongo documentation) | its name is determined down as mongo-db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -26,3 +28,6 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
       ME_CONFIG_BASICAUTH: false
+
+volumes:
+  mongo-db:   # volume name to store data
