@@ -1,0 +1,63 @@
+1- npm init --y         => package.json
+2- npm i express --save
+
+To run server => node server.js
+To run in development => npm run start dev
+To run in production  => npm run start prod
+
+===================== Watch mode =====================
+    npm i -D nodemon                => development
+    nodemon server.js
+
+    OR After installation
+      "scripts": {
+            "dev": "nodemon server.js"
+        },
+    then use this command each time
+        npm run dev
+    
+Create file => config.env 
+    then install => npm i dotenv
+
+Create file => .gitignore
+
+===================== For Logging =====================
+npm i morgan
+
+
+===================== Mongodb ===================== 
+        Database 
+            Collection  => Table
+                Document    => Row              => For Mongoose => Schema | After finishing you turn it into a ** Model ** so you can work with it
+                    Field       => Column       
+- Go to the cluster
+- Then on Collections => Create a database
+- Create or use existing user from Database Access
+- then go for config.env and make configurations
+
+
+- Connect using Mongoose => mongoosejs.com 
+    npm i mongoose 
+    - Connect your application using MongoDB's native drivers
+        DB_URI=Paste
+            mongodb.net/<db_name>?retryWrites
+             
+
+===================== Slug ===================== 
+- npm i slugify
+
+===================== async ===================== 
+- npm i --save express-async-handler
+        Simple Middleware for handling exceptions inside of async express routes
+        And passes them to your express error handlers
+
+/* ============== Validation Layer => express validator ============== 
+
+    Database errors handling without validation layer
+    - Request => Route => Service => Database (failed)=> Exception => Exception Handling -
+    We don't want to wait till we talk to the database to till us there's an error, 
+        which means to early catch errors => Validation Layer
+    -               Exception Handling <== Exception
+    - Request => Route => Validation Middleware |up| => Service => Database
+*/
+- npm i --save express-validator

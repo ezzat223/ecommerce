@@ -1,0 +1,9 @@
+services:
+  ecommerce-app: 
+    build:
+      context: . # build from dockerfile
+      target: development
+    volumes:
+      - ./src:/app/src:ro
+    environment:
+      - NODE_ENV=development

@@ -1,0 +1,10 @@
+services:
+  ecommerce-app: # (service name) you can give it any name
+    container_name: ecommerce-app-container
+    build: . # docker file
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=reference
+    env_file:
+      - ./config.env

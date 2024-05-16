@@ -1,0 +1,8 @@
+services:
+  ecommerce-app:
+    build:
+      context: . # build from dockerfile
+      target: production
+    environment:
+      - NODE_ENV=production
+
