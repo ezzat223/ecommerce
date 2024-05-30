@@ -7,32 +7,26 @@ const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const { uploadSingleImage } = require('../middlewares/uploadImageMiddleware')
 
-const categoryModel = require("../models/categoryModel");
+const brandModel = require("../models/brandModel");
+const { deleteOne, updateOne, createOne, getOne, getAll } = require('./handlersFactory');
 
 
-const {
-  deleteOne,
-  updateOne,
-  createOne,
-  getOne,
-  getAll,
-} = require("./handlersFactory");
 
 /* ============== Images ============== */
 // upload single image
-exports.uploadCategoryImage = uploadSingleImage("image");
+exports.uploadBrandImage = uploadSingleImage("image");
 
 // resize Images
 exports.resizeImage = asyncHandler(async (req, res, next) => {
   // Ensure the destination directory exists, create it if it doesn't
-  const destinationDir = "./src/uploads/categories";
+  const destinationDir = "./src/uploads/brands";
   fs.mkdirSync(destinationDir, { recursive: true }, (err) => {
     if (err) {
       console.error("Error creating destination directory:", err);
     }
   });
 
-  const filename = `category-${uuidv4()}-${Date.now()}.jpeg`;
+  const filename = `brand-${uuidv4()}-${Date.now()}.jpeg`;
 
   //   use sharp
   await sharp(req.file.buffer)
@@ -48,43 +42,44 @@ exports.resizeImage = asyncHandler(async (req, res, next) => {
   next();
 });
 
-
 /* ============== Services ============== */
 /**
- * @description     Get list of all categories
- * @route           GET /api/v1/categories
+ * @description     Get list of all brands
+ * @route           GET /api/v1/brands
  * @access          Public
  */
-exports.getCategories = getAll(categoryModel);
+exports.getBrands = getAll(brandModel);
 
 // ============================================================== //
 /**
- * @description     Get specific category by id
- * @route           GET /api/v1/categories/:id
+ * @description     Get specific brand by id
+ * @route           GET /api/v1/brands/:id
  * @access          Public
  */
-exports.getCategory = getOne(categoryModel);
+exports.getBrand = getOne(brandModel);
+
 
 // ============================================================== //
 /**
- * @description     Create category
- * @route           POST /api/v1/categories
+ * @description     Create brand
+ * @route           POST /api/v1/brands
  * @access          Private
  */
-exports.createCategory = createOne(categoryModel);
+exports.createBrand = createOne(brandModel);
+
 
 // ============================================================== //
 /**
- * @description     Update specific category
- * @route           PUT /api/v1/categories/:id
+ * @description     Update specific brand
+ * @route           PUT /api/v1/brands
  * @access          Private
  */
-exports.updateCategory = updateOne(categoryModel);
+exports.updateBrand = updateOne(brandModel);
 
 // ============================================================== //
 /**
- * @description     Delete specific category
- * @route           DELETE /api/v1/categories/:id
+ * @description     Delete specific brand
+ * @route           DELETE /api/v1/brands/:id
  * @access          Private
  */
-exports.deleteCategory = deleteOne(categoryModel);
+exports.deleteBrand = deleteOne(brandModel);
