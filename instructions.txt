@@ -61,3 +61,9 @@ npm i morgan
     - Request => Route => Validation Middleware |up| => Service => Database
 */
 - npm i --save express-validator
+
+===================== ESLint for errors on vscode ===================== 
+- npm i -D eslint eslint-config-airbnb eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-prettier eslint-plugin-react prettier
+
+2- Create ".eslintrc.json" file in the root directory with these configration: 
+

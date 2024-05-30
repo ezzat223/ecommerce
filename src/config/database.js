@@ -8,8 +8,8 @@ const dbConnection = () => {
     .then(
         (conn) => {
             console.log(`Database connected, HOST: ${conn.connection.host}`);
-            console.log(`Database connected, PORT: ${conn.connection.port}`);
-            console.log(`Database connected, NAME: ${conn.connection.name}`);
+            // console.log(`Database connected, PORT: ${conn.connection.port}`);
+            // console.log(`Database connected, NAME: ${conn.connection.name}`);
         }
     )
     

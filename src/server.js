@@ -1,12 +1,25 @@
 /* =============== imports =============== */
+// core modules
+const path = require('path');
+
+// Third-party
 const express = require("express");
 const morgan = require("morgan");
 
 const dotenv = require("dotenv");
+
 dotenv.config({ path: "config.env" });
 
+
+
 const dbConnection = require("./config/database");
+// Routes
 const categoryRoute = require("./routes/categoryRoutes");
+const subCategoryRoute = require("./routes/subCategoryRoutes");
+const brandRoute = require("./routes/brandRoutes");
+const productRoute = require("./routes/productRoutes");
+
+// Errors
 const ApiError = require("./utils/apiError");
 const globalError = require("./middlewares/errorMiddlewares");
 
@@ -26,6 +39,9 @@ const app = express();
 // parsing => Turns it into a js object
 app.use(express.json());
 
+// ============= for images, serve static files => http://localhost:4000/categories/image-name
+app.use(express.static(path.join(__dirname, '/uploads')))
+
 // logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -39,6 +55,12 @@ app.get("/", (req, res) => {
 })
 // category
 app.use("/api/v1/categories", categoryRoute);
+// sub category
+app.use("/api/v1/subCategories", subCategoryRoute);
+// brand
+app.use("/api/v1/brands", brandRoute);
+// product
+app.use("/api/v1/products", productRoute);
 
 
 

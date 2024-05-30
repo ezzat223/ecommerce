@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 /* ============== Schema ==============*/
 // 1- create schema
-const categorySchema = new mongoose.Schema(
+const brandSchema = new mongoose.Schema(
   {
     /**
      * @type {mongoose.SchemaDefinitionProperty}
@@ -11,10 +11,10 @@ const categorySchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
-      required: [true, "Category required"],
-      unique: [true, "Category must be unique"],
-      minlength: [3, "Too short category name"],
-      maxlength: [32, "Too long category name"],
+      required: [true, "brand required"],
+      unique: [true, "brand must be unique"],
+      minlength: [3, "Too short brand name"],
+      maxlength: [32, "Too long brand name"],
     },
     // for url => replace spaces by _ and uppercase to lower
     slug: {
@@ -27,8 +27,5 @@ const categorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// 2- create model
-const categoryModel = mongoose.model("category", categorySchema);
-
-/* ============== export ==============*/
-module.exports = categoryModel;
+// 2- create model and export
+module.exports = mongoose.model("brand", brandSchema);
